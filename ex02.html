@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processamento salarial dos funcionários</title>
+    <style>
+        main {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #resultbox {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <h1>Processamento salarial dos funcionários</h1>
+            <form action="nada.php" method="get" onsubmit="return process()">
+                <label for="funcionarios">Quanto salários serão cadastrados?</label>
+                <input type="number" name="funcionarios" id="funcionarios" min="1" max="30" value="5">
+                <input type="submit" value="Iniciar">
+            </form>
+        </section>
+        <br>
+        <section id="resultbox">
+            <h1>Resultado</h1>
+            <p id="resultado"></p>
+            <button onclick="ocult()">Fechar</button>
+        </section>
+    </main>
+    <script>
+        let resbox = document.getElementById("resultbox")
+        function process() {
+            let res = document.getElementById("resultado")
+            let func = Number(document.getElementById("funcionarios").value)
+            let cont = 1
+            let sal = 0
+            let total = 0
+            let maior = 0
+            let menor = 0
+            let nmrfunc = 0
+            let nmnfunc = 0
+            while (cont <= func) {
+                sal = Number(prompt(`Qual o salário do ${cont}° funcionário?`))
+                total += sal
+                if (cont == 1) {
+                    maior = sal
+                    menor = sal
+                    nmrfunc = cont
+                    nmnfunc = cont
+                }
+                else {
+                    if (sal > maior) {
+                    maior = sal
+                    nmrfunc = cont
+                    }
+                    else if (sal < menor) {
+                    menor = sal
+                    nmnfunc = cont
+                    }
+                }    
+                cont ++
+            }
+            resbox.style.display = "block"
+            res.innerHTML = `Para pagar o salário dos ${func} funcionários cadstrados, a empresa terá que gastar no total R$${(total).toFixed(2)}. A média salarial dos funcionários é de R$${(total / func).toFixed(2)}. O maior salário pago foi de R$${(maior).toFixed(2)} ao ${nmrfunc}° funcionário. O menor salário pago foi de R$${(menor).toFixed(2)} ao ${nmnfunc}° funcionário.`
+            return false
+        }
+        function ocult() {
+            resbox.style.display = "none"
+        }
+    </script>
+</body>
+</html>
