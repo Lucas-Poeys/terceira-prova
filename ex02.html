@@ -6,8 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processamento salarial dos funcionários</title>
     <style>
+        body {
+            background-image: linear-gradient(#EAF27C, #FA824C);
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
         main {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        section {
+            display: block;
+            margin: auto;
+            text-align: center;
+            background-color: white;
+            width: 540px;
+            padding: 15px;
+            border-radius: 15px;
+        }
+        h1 {
+            color: #832232;
+        }
+        #button {
+            background-color: #CE8964;
+            color: white;
+            padding: 5px;
+            width: 100px;
+        }
+        button {
+            background-color: #CE8964;
+            color: white;
+            padding: 5px;
+            width: 100px;
         }
         #resultbox {
             display: none;
@@ -21,7 +52,9 @@
             <form action="nada.php" method="get" onsubmit="return process()">
                 <label for="funcionarios">Quanto salários serão cadastrados?</label>
                 <input type="number" name="funcionarios" id="funcionarios" min="1" max="30" value="5">
-                <input type="submit" value="Iniciar">
+                <br>
+                <br>
+                <input type="submit" value="Iniciar" id="button">
             </form>
         </section>
         <br>
@@ -65,7 +98,7 @@
                 cont ++
             }
             resbox.style.display = "block"
-            res.innerHTML = `Para pagar o salário dos ${func} funcionários cadstrados, a empresa terá que gastar no total R$${(total).toFixed(2)}. A média salarial dos funcionários é de R$${(total / func).toFixed(2)}. O maior salário pago foi de R$${(maior).toFixed(2)} ao ${nmrfunc}° funcionário. O menor salário pago foi de R$${(menor).toFixed(2)} ao ${nmnfunc}° funcionário.`
+            res.innerHTML = `Para pagar o salário dos ${func} funcionários cadastrados, a empresa terá que gastar no total R$${(total).toFixed(2)}. A média salarial dos funcionários é de R$${(total / func).toFixed(2)}. O maior salário pago foi de R$${(maior).toFixed(2)} ao ${nmrfunc}° funcionário. O menor salário pago foi de R$${(menor).toFixed(2)} ao ${nmnfunc}° funcionário.`
             return false
         }
         function ocult() {
